@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CharacterByIdService } from '../service/character-by-id.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-character-details',
@@ -13,7 +14,7 @@ export class CharacterDetailsComponent {
 
   character: any = null;
 
-  constructor(private route: ActivatedRoute, private characterById: CharacterByIdService) { }
+  constructor(private route: ActivatedRoute, private characterById: CharacterByIdService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -26,6 +27,10 @@ export class CharacterDetailsComponent {
       })
 
     });
+  }
+
+  goBack() {
+    this.router.navigate(['/characters']);
   }
 
 
