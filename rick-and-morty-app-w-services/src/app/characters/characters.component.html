@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3 my-4" *ngFor="let character of shuffledCharacters">
+      <div class="container text-center border py-2 text-break">
+        <img class="img-fluid" src={{character.image}} alt="Image of character.name">
+        <h5 class="py-2">{{ character.name }}</h5>
+        <div class="d-grid gap-2">
+          <button class="btn btn-warning my-2">See more...</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
