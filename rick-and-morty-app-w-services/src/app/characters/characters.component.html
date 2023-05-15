@@ -5,9 +5,8 @@
         <img class="img-fluid" src={{character.image}} alt="Image of character.name">
         <h5 class="py-2">{{ character.name }}</h5>
         <div class="d-grid gap-2">
-          <button class="btn btn-warning my-2">See more...</button>
+          <button class="btn btn-warning my-2" (click)="readMore(character.id)">See more...</button>
         </div>
-
       </div>
     </div>
   </div>

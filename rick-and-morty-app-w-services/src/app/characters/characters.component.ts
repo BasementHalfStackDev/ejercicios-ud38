@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { CharactersListService } from '../service/characters-list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-characters',
@@ -11,16 +12,17 @@ export class CharactersComponent implements OnInit {
   characters: any = null;
   shuffledCharacters: any = null;
 
-  // Add HttpClient
-  constructor(private http: HttpClient) { }
+  // Add service
+  constructor(private charactersService: CharactersListService, private router: Router) { }
 
   ngOnInit(): void {
     // Get database
-    this.http.get<any>('assets/db/database.json').subscribe(data => {
+    this.charactersService.returnValues().subscribe(data => {
       // Store in characters variable
-      this.characters = data.characters;
+      this.characters = data;
       // Store shuffled characters in another variable
-      this.shuffledCharacters = this.shuffleArray(this.characters);
+      this.shuffledCharacters = this.shuffleArray(this.characters.results);
+      console.log(this.shuffledCharacters);
     }),
       () => {
         console.log("Something went wrong");
@@ -35,4 +37,9 @@ export class CharactersComponent implements OnInit {
     }
     return array;
   }
+
+  readMore(id: number){
+    this.router.navigate(['/characters', id]);
+  }
+
 }
