@@ -10,18 +10,22 @@ import { Router } from '@angular/router';
 })
 export class CharacterDetailsComponent {
 
+  // Attribute to store id and character
   id: number = 0;
-
   character: any = null;
 
+  // Constructor with ActivatedRoute, Service, and Router
   constructor(private route: ActivatedRoute, private characterById: CharacterByIdService, private router: Router) { }
 
   ngOnInit(): void {
+    // Get the id from the route parameters
     this.route.params.subscribe(params => {
       this.id = params['id'];
 
+      // Pass id to service
       this.characterById.id = this.id;
 
+      // Get character from service with passed ID
       this.characterById.returnValues().subscribe(data => {
         this.character = data;
       })
@@ -29,6 +33,7 @@ export class CharacterDetailsComponent {
     });
   }
 
+  // Function for back button to return to /characters
   goBack() {
     this.router.navigate(['/characters']);
   }

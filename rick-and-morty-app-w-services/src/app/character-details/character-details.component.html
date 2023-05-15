@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-12 text-center">
+    <div class="col-12 text-center" *ngIf="character != null">
       <h3>{{character.name}}</h3>
       <img src={{character.image}} alt="" class="img-fluid mt-2">
       <p class="mt-3">Status: {{character.status}} </p>
@@ -12,6 +12,3 @@
     </div>
   </div>
 </div>
-
-
-

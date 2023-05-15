@@ -12,19 +12,19 @@ export class CharactersComponent implements OnInit {
   characters: any = null;
   shuffledCharacters: any = null;
 
-  // Add service
+  // Add service and router
   constructor(private charactersService: CharactersListService, private router: Router) { }
 
   ngOnInit(): void {
-    // Get database
+    // Get data from service
     this.charactersService.returnValues().subscribe(data => {
       // Store in characters variable
       this.characters = data;
-      // Store shuffled characters in another variable
+      // Store shuffled characters in another variable, shuffling them with a function
       this.shuffledCharacters = this.shuffleArray(this.characters.results);
-      console.log(this.shuffledCharacters);
     }),
       () => {
+        // Else, something went wrong
         console.log("Something went wrong");
       }
     ;}
@@ -38,6 +38,7 @@ export class CharactersComponent implements OnInit {
     return array;
   }
 
+  // Function that takes you to /characters/id
   readMore(id: number){
     this.router.navigate(['/characters', id]);
   }
